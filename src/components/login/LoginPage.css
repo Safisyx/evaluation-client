@@ -1,0 +1,10 @@
+.LoginPage h1 {
+  font-size: 50px;
+  text-transform: uppercase;
+  color: blue
+}
+
+.LoginPage {
+  padding: 40px;
+  /* color: blue; */
+}
