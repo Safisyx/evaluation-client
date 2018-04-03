@@ -1,3 +1,12 @@
+import {USER_LOGIN_FAILED} from '../actions/types'
+
 export default (state={},{type,payload}) => {
-  return state
+  switch (type) {
+    case USER_LOGIN_FAILED:
+      return {
+				error: payload
+			}
+    default:
+      return state
+  }
 }
