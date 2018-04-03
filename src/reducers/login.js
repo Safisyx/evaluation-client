@@ -1,7 +1,27 @@
-import {USER_LOGIN_FAILED} from '../actions/types'
+import {USER_LOGIN_SUCCESS, USER_LOGIN_FAILED, USER_LOGOUT} from '../actions/types'
+import {localStorageJwtKey} from '../constants'
 
-export default (state={},{type,payload}) => {
+let initialState = null
+try {
+  const jwt = localStorage.getItem(localStorageJwtKey)
+  if (jwt) {
+    initialState = { user: jwt }
+  }
+}
+catch (e) {
+  console.log(`Error retrieving data from local storage`, e)
+}
+
+export default (state=initialState, {type,payload}) => {
   switch (type) {
+    case USER_LOGIN_SUCCESS:
+			return {
+        user: payload
+      }
+
+    case USER_LOGOUT:
+      return null
+
     case USER_LOGIN_FAILED:
       return {
 				error: payload
