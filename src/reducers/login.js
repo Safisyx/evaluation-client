@@ -1,7 +1,7 @@
 import {USER_LOGIN_SUCCESS, USER_LOGIN_FAILED, USER_LOGOUT} from '../actions/types'
 import {localStorageJwtKey} from '../constants'
 
-let initialState = null
+let initialState = {}
 try {
   const jwt = localStorage.getItem(localStorageJwtKey)
   if (jwt) {
@@ -20,7 +20,9 @@ export default (state=initialState, {type,payload}) => {
       }
 
     case USER_LOGOUT:
-      return null
+      return {
+        user: null
+      }
 
     case USER_LOGIN_FAILED:
       return {
