@@ -1,7 +1,7 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
 
-import {GET_BATCHES, ADD_BATCH, ADD_BATCH_ERROR} from './types'
+import {GET_BATCHES, ADD_BATCH, ADD_BATCH_ERROR, GET_BATCH} from './types'
 
 export const getBatches = () => (dispatch, getState) => {
   const state = getState()
@@ -39,4 +39,20 @@ export const addBatch = (data) => (dispatch, getState) => {
     			payload: err.response.body.message || 'Error'
     		})
     })
+}
+
+export const getBatch = (batchId) => (dispatch, getState) => {
+  const state = getState()
+  const jwt = state.login.user
+
+  request
+		.get(`${baseUrl}/batches/${batchId}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .then(result => {
+      dispatch({
+        type: GET_BATCH,
+        payload: result.body
+      })
+    })
+    .catch(err => console.error(err))
 }

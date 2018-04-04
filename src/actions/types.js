@@ -4,6 +4,7 @@ export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
 //BATCHES
+export const GET_BATCH = 'GET_BATCH'
 export const GET_BATCHES = 'GET_BATCHES'
 export const ADD_BATCH = 'ADD_BATCH'
 export const ADD_BATCH_ERROR = 'ADD_BATCH_ERROR'
