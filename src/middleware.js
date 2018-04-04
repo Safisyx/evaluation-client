@@ -4,7 +4,7 @@ import {sessionStorageJwtKey} from './constants'
 export const storeJwt = store => next => action => {
   try {
     if (action.type === USER_LOGIN_SUCCESS) {
-      sessionStorage.setItem(sessionStorageJwtKey, action.payload.jwt)
+      sessionStorage.setItem(sessionStorageJwtKey, action.payload)
     }
     if (action.type === USER_LOGOUT) {
       sessionStorage.removeItem(sessionStorageJwtKey)

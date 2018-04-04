@@ -15,7 +15,7 @@ export const login = (email, password) => (dispatch) =>
     .then(result => {
       dispatch({
         type: USER_LOGIN_SUCCESS,
-        payload: result.body
+        payload: result.body.jwt
       })
     })
     .catch(err => {

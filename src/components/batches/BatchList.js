@@ -76,7 +76,7 @@ class BatchList extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  authenticated: state.currentUser !== null,
+  authenticated: (state.login.user !== null) && (state.login.user !== undefined),
   batches: state.batches === null ?
     null : Object.values(state.batches).sort((a, b) => b.id - a.id),
   pass: state.errors.pass,
