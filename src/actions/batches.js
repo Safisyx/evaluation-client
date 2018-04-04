@@ -1,7 +1,7 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
 
-import {GET_BATCHES, ADD_BATCH} from './types'
+import {GET_BATCHES, ADD_BATCH, ADD_BATCH_ERROR} from './types'
 
 export const getBatches = () => (dispatch, getState) => {
   const state = getState()
@@ -33,5 +33,10 @@ export const addBatch = (data) => (dispatch, getState) => {
         payload: result.body
       })
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+    		dispatch({
+    			type: ADD_BATCH_ERROR,
+    			payload: err.response.body.message || 'Error'
+    		})
+    })
 }
