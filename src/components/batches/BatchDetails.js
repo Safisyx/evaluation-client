@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import Button from 'material-ui/Button'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
@@ -52,6 +53,7 @@ class BatchDetails extends PureComponent {
         {
           <Button
             size="small"
+            onClick={()=>(this.props.history.push(`/batches/${batch.id}`))}
           >
               view
           </Button>
@@ -62,4 +64,6 @@ class BatchDetails extends PureComponent {
   }
 }
 
-export default connect(null)(BatchDetails)
+export default withRouter(
+  connect(null)(BatchDetails)
+)
