@@ -109,13 +109,12 @@ class BatchOverview extends PureComponent {
 
   handleAsk = () => {
     this.props.pickStudent(this.props.batch.students)
-    // this.setState(
-    //   {
-    //     ...this.state,
-    //     askQuestion:true
-    //   }
-    // )
   }
+
+  allBatches = () => {
+    this.props.history.push('/batches')
+  }
+
   render() {
     const {authenticated,batch} = this.props
     if (!batch.colorsPercentage) return "loading.."
@@ -147,6 +146,7 @@ class BatchOverview extends PureComponent {
     if (students.length===0) return (
       <div className='batch-menu'>
         <button className='add-student' onClick={this.handleAdd}> Add student </button>
+        <button id='all-batches-button' onClick={this.allBatches}> All batches </button>
       </div>
     )
 
@@ -157,6 +157,7 @@ class BatchOverview extends PureComponent {
           <button className='add-student' onClick={this.handleAdd}> Add student </button>
           <button id='edit-student' onClick={this.handleEdit}> Edit student </button>
           <button id='delete-student' onClick={this.handleDelete}> Delete student </button>
+          <button id='all-batches-button' onClick={this.allBatches}> All batches </button>
         </div>
         <button id='ask-question' onClick={this.handleAsk}>
           Ask Question
