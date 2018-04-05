@@ -50,13 +50,14 @@ class StudentPage extends PureComponent {
 
   handleSubmit = (next,data) => {
     console.log(next,data);
-    this.props.addEvaluation(this.props.student.id,data)
+    if (data.code && (data.code==='green'|| data.code==='yellow'|| data.code==='red'))
+      this.props.addEvaluation(this.props.student.id,data)
     if (!next)
       this.props.history.push(`/batches/${this.props.match.params.batchId}`)
     else {
       const students=this.props.batch.students
       const studentIndex=students.indexOf(this.props.student)
-      console.log(studentIndex);
+      //console.log(studentIndex);
 
       let nextStudent=studentIndex+1
       if (studentIndex===students.length-1)
