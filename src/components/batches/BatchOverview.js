@@ -1,13 +1,16 @@
 import React, {PureComponent} from 'react'
 import {getBatch} from '../../actions/batches'
+import {addStudent} from '../../actions/students'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import StudentCard from '../students/StudentCard'
+import StudentForm from '../students/StudentForm'
 import './BatchOverview.css'
 
 class BatchOverview extends PureComponent {
   state = {
-    remove:false
+    remove:false,
+    add:false
   }
   componentWillMount() {
     if (this.props.authenticated) {
@@ -26,6 +29,7 @@ class BatchOverview extends PureComponent {
     console.log('I am here');
     this.setState(
       {
+        add:false,
         remove: false
       }
     )
@@ -45,7 +49,22 @@ class BatchOverview extends PureComponent {
   {
     this.setState(
       {
+        ...this.state,
         remove: true
+      }
+    )
+  }
+
+  handleSubmit = (data) => {
+    this.props.addStudent(data)
+    this.stateChange()
+  }
+
+  handleAdd = () => {
+    this.setState(
+      {
+        ...this.state,
+        add: true
       }
     )
   }
@@ -62,14 +81,21 @@ class BatchOverview extends PureComponent {
 
     if (students.length===0) return 'No student yet'
 
-    return (
-      <div className='BatchOverview'>
+    if (this.state.add) {
+      return (
+        <StudentForm onSubmit={this.handleSubmit}/>
+      )
+    }
 
+    return (
+
+      <div className='BatchOverview'>
         <div className='batch-menu'>
-          <button id='add-student'> Add student </button>
+          <button id='add-student' onClick={this.handleAdd}> Add student </button>
           <button id='edit-student'> Edit student </button>
           <button id='delete-student' onClick={this.handleDelete}> Delete student </button>
         </div>
+        <p>{ this.props.error && <span style={{color:'red'}}>{this.props.error}</span> }</p>
         <div className='Progress'>
           <div id='green' style={this.divStyle(colorsPercentage.green)}>
             <p>{colorsPercentage.green !==0 && `${colorsPercentage.green}%`}</p>
@@ -92,7 +118,8 @@ class BatchOverview extends PureComponent {
 
 const mapStateToProps = state => ({
   authenticated: (state.login.user !== null) && (state.login.user !== undefined),
-  batch: state.batch
+  batch: state.batch,
+  error: state.errors.error
 })
 
-export default connect(mapStateToProps, {getBatch})(BatchOverview)
+export default connect(mapStateToProps, {getBatch, addStudent})(BatchOverview)
