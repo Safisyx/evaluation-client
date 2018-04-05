@@ -1,4 +1,5 @@
-import {ADD_BATCH_ERROR, ADD_BATCH} from '../actions/types'
+import {ADD_BATCH_ERROR, ADD_BATCH,
+        ADD_STUDENT, ADD_STUDENT_ERROR} from '../actions/types'
 
 /*
 The state will contain the batches in an object with the ID as key
@@ -14,7 +15,14 @@ export default (state = {}, {type, payload}) => {
       return {
         pass: 'OK'
       }
-
+    case ADD_STUDENT_ERROR:
+      return {
+        error:payload
+      }
+    case ADD_STUDENT:
+      return {
+        pass: 'OK'
+      }
     default:
       return state
   }
