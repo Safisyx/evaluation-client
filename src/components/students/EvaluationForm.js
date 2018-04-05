@@ -6,13 +6,12 @@ export default class EvaluationForm extends PureComponent {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-    alert('submit')
-		this.props.onSubmit({...this.state, code: this.props.bColor})
+		this.props.onSubmit(false,{...this.state, code: this.props.bColor})
 	}
 
   saveNext = (e) => {
     e.preventDefault()
-    alert('BAKOBAKOB')
+		this.props.onSubmit(true,{...this.state, code: this.props.bColor})
   }
 
 	handleChange = (event) => {
