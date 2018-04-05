@@ -1,13 +1,17 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import Card, {CardContent} from 'material-ui/Card'
-import Typography from 'material-ui/Typography'
+import Card from 'material-ui/Card'
 import {getBatch} from '../../actions/batches'
+import {Redirect} from 'react-router-dom'
+import {addEvaluation} from '../../actions/evaluations'
+import EvaluationForm from './EvaluationForm'
 import './StudentPage.css'
 
 class StudentPage extends PureComponent {
-
+  state= {
+    color : 'inherit'
+  }
   componentWillMount() {
     if (this.props.authenticated) {
       this.props.getBatch(this.props.match.params.batchId)
@@ -21,10 +25,42 @@ class StudentPage extends PureComponent {
     )
   }
 
+  green = () => {
+    this.setState(
+      {
+        color: 'green'
+      }
+    )
+  }
+  yellow = () => {
+    this.setState(
+      {
+        color: 'yellow'
+      }
+    )
+  }
+  red = () => {
+    this.setState(
+      {
+        color: 'red'
+      }
+    )
+  }
+
+
+  handleSubmit = (data) => {
+    this.props.addEvaluation(this.props.student.id,data)
+    this.props.history.push(`/batches/${this.props.match.params.batchId}`)
+  }
   render() {
-    const {student} = this.props
-    console.log('---STUDENT----');
-    console.log(student)
+    const {student, authenticated} = this.props
+  //  console.log('---STUDENT----');
+  //  console.log(student)
+
+    if (!authenticated) return (
+			<Redirect to="/login" />
+		)
+
     if (!student) return "loading"
 
     return (
@@ -42,7 +78,20 @@ class StudentPage extends PureComponent {
             }
           </div>
         </div>
+
+        <div className='colors-buttons'>
+          <p> Evaluation</p>
+          <div id='button-green' onClick={this.green}/>
+          <div id='button-yellow' onClick={this.yellow}/>
+          <div id='button-red' onClick={this.red}/>
+        </div>
+
+        <div className='evaluation-container'>
+          <EvaluationForm bColor={this.state.color}
+           onSubmit={this.handleSubmit}/>
+        </div>
       </Card>
+      <p>{ this.props.error && <span style={{color:'red'}}>{this.props.error}</span> }</p>
       </div>
     )
   }
@@ -65,5 +114,5 @@ const mapStateToProps = (state,props) => {
 }}
 
 export default withRouter(
-  connect(mapStateToProps, {getBatch})(StudentPage)
+  connect(mapStateToProps, {getBatch, addEvaluation})(StudentPage)
 )

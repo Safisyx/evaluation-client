@@ -1,7 +1,7 @@
 .bigCard {
   width: 600px;
   max-width: 900px;
-  height: 500px;
+  height: 450px;
   margin: 10px;
   background-color: #c2f1ff !important;
   color: black !important;
@@ -49,5 +49,55 @@
   background-color: #ffbd4a;
 }
 .studentPage-color-red {
+  background-color: #ef0000;
+}
+
+.evaluation-container {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  left: 150px;
+}
+
+
+.colors-buttons {
+  position: absolute;
+  width: 140px;
+  left:10px;
+  bottom: 75px;
+  max-width: 150px;
+  text-align: center;
+}
+
+.colors-buttons div {
+  width: 50px;
+  height: 20px;
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.colors-buttons p {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.colors-buttons div:hover {
+  width: 52px;
+  height: 22px;
+  margin-top: 8px;
+  margin-left: 38px;
+  margin-bottom: 8px
+}
+
+#button-green {
+  background-color: #35b729;
+}
+
+#button-yellow {
+  background-color: #ffbd4a;
+}
+#button-red {
   background-color: #ef0000;
 }
