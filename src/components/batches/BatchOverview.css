@@ -19,3 +19,14 @@
 #red {
   background-color: #ef0000;
 }
+
+.students {
+  display: flex;
+  width: 960px;
+  flex-wrap: wrap;
+  justify-content: center;
+  float: inherit;
+  position: absolute;
+  transform: translate(-50%,0);
+  left: 50%;
+}
