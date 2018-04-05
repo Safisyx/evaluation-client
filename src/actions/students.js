@@ -1,6 +1,6 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
-import {DELETE_STUDENT, ADD_STUDENT, ADD_STUDENT_ERROR, EDIT_STUDENT} from './types'
+import {DELETE_STUDENT, ADD_STUDENT, ADD_STUDENT_ERROR, EDIT_STUDENT, PICK_STUDENT} from './types'
 
 export const deleteStudent = (id) => (dispatch, getState) => {
   const state = getState()
@@ -56,6 +56,23 @@ export const editStudent = (id, {name,photo}) => (dispatch, getState) => {
     .then(result => {
       dispatch({
         type: EDIT_STUDENT,
+        payload: result.body
+      })
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+export const pickStudent = (students) => (dispatch) => {
+  request
+    .post(`${baseUrl}/students/random`)
+    .send(students)
+    .then(result => {
+      console.log('----------------');
+      console.log(result.body);
+      dispatch({
+        type: PICK_STUDENT,
         payload: result.body
       })
     })
