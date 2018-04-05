@@ -6,7 +6,9 @@ import StudentCard from '../students/StudentCard'
 import './BatchOverview.css'
 
 class BatchOverview extends PureComponent {
-
+  state = {
+    remove:false
+  }
   componentWillMount() {
     if (this.props.authenticated) {
       this.props.getBatch(this.props.match.params.id)
@@ -20,12 +22,31 @@ class BatchOverview extends PureComponent {
     }
   }
 
+  stateChange = () => {
+    console.log('I am here');
+    this.setState(
+      {
+        remove: false
+      }
+    )
+  }
   renderStudent = (student) => {
     return (
       <StudentCard
         key={student.id}
         student={student}
+        change={this.stateChange}
+        remove={this.state.remove}
       />
+    )
+  }
+
+  handleDelete = () =>
+  {
+    this.setState(
+      {
+        remove: true
+      }
     )
   }
 
@@ -47,7 +68,7 @@ class BatchOverview extends PureComponent {
         <div className='batch-menu'>
           <button id='add-student'> Add student </button>
           <button id='edit-student'> Edit student </button>
-          <button id='delete-student'> Delete student </button>
+          <button id='delete-student' onClick={this.handleDelete}> Delete student </button>
         </div>
         <div className='Progress'>
           <div id='green' style={this.divStyle(colorsPercentage.green)}>
