@@ -45,13 +45,13 @@ class BatchOverview extends PureComponent {
       <div className='BatchOverview'>
         <div className='Progress'>
           <div id='green' style={this.divStyle(colorsPercentage.green)}>
-            <p>{`${colorsPercentage.green}%`}</p>
+            <p>{colorsPercentage.green !==0 && `${colorsPercentage.green}%`}</p>
           </div>
           <div id='yellow' style={this.divStyle(colorsPercentage.yellow)}>
-            <p>{`${colorsPercentage.yellow}%`}</p>
+            <p>{colorsPercentage.yellow !==0 && `${colorsPercentage.yellow}%`}</p>
           </div>
           <div id='red' style={this.divStyle(colorsPercentage.red)}>
-            <p>{`${colorsPercentage.red}%`}</p>
+            <p>{colorsPercentage.red !==0 && `${colorsPercentage.red}%`}</p>
           </div>
         </div>
 

@@ -28,8 +28,7 @@
   text-transform: uppercase;
 }
 .code:hover {
-  width: 102px;
-  height: 52px;
+  color: black;
 }
 
 .image-container {
@@ -43,12 +42,20 @@
 
 .bColor-green {
   background-color: #35b729;
+  color: #35b729;
 }
 
 .bColor-yellow {
   background-color: #ffbd4a;
+  color: inherit;
 }
 
 .bColor-red {
   background-color: #ef0000;
+  color:inherit;
+}
+
+.student-name:hover {
+  color:blue;
+  cursor: pointer;
 }

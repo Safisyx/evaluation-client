@@ -17,16 +17,17 @@ class StudentCard extends PureComponent {
     return (
       <Card className="StudentCard">
         <div className='image-container'>
-            <img className='image' src={`${student.photo}`} alt="" />
+            <a onClick={()=>(alert('image'))}>
+              <img className='image' src={`${student.photo}`} alt="" />
+            </a>
         </div>
         <CardContent className='name-container'>
           <Typography variant="headline" component="h2">
-            {student.name}
+            <a onClick={()=>(alert('name'))} className='student-name'>{student.name}</a>
           </Typography>
         </CardContent>
-          <button className={`code bColor-${bColor}`} onClick={()=>(alert('sweet'))}>
-            View
-          </button>
+          <div className={`code bColor-${bColor}`}>
+          </div>
       </Card>
     )
   }
