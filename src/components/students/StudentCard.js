@@ -15,6 +15,10 @@ class StudentCard extends PureComponent {
       this.props.deleteStudent(this.props.student.id)
       this.props.change()
       //window.location.reload()
+    } else if (this.props.pick) {
+      alert(this.props.student.id)
+      console.log('EDIT');
+      this.props.afterPick(this.props.student.id)
     }
     else
       alert("NOPE")

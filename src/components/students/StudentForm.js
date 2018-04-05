@@ -35,7 +35,7 @@ export default class BatchForm extends PureComponent {
 					} onChange={ this.handleChange } />
 				</div>
 
-				<button type='submit'>Add</button>
+				<button type='submit'>{this.props.buttonText}</button>
 			</form>
 		)
 	}
