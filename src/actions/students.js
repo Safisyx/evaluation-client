@@ -1,6 +1,7 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
-import {DELETE_STUDENT, ADD_STUDENT, ADD_STUDENT_ERROR, EDIT_STUDENT, PICK_STUDENT} from './types'
+import {DELETE_STUDENT, ADD_STUDENT, ADD_STUDENT_ERROR, EDIT_STUDENT,
+    PICK_STUDENT, AFTER_PICK} from './types'
 
 export const deleteStudent = (id) => (dispatch, getState) => {
   const state = getState()
@@ -79,4 +80,10 @@ export const pickStudent = (students) => (dispatch) => {
     .catch(err => {
       console.error(err);
     })
+}
+
+export const afterPick = () => {
+  return {
+    type: AFTER_PICK
+  }
 }
