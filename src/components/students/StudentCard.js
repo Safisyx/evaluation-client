@@ -21,7 +21,7 @@ class StudentCard extends PureComponent {
       this.props.afterPick(this.props.student.id)
     }
     else
-      alert("NOPE")
+      this.props.history.push(`/batches/${this.props.match.params.id}/students/${this.props.student.id}`)
   }
   render() {
     const {student} = this.props
