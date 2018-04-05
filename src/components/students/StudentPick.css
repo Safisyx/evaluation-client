@@ -1,0 +1,30 @@
+.BigCard {
+  background-color: white;
+  display: flex;
+  top: 150px;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 99;
+  justify-content: center;
+}
+
+.StudentPick {
+  width: 300px;
+  height: 400px;
+  margin: 10px;
+  margin-top: 200px;
+  background-color: #c2f1ff !important;
+  color: black !important;
+  text-align: center;
+  position: relative;
+}
+
+.image-container {
+  height: 200px;
+  margin-top: 5px;
+}
+.image {
+  max-height: 200px;
+  max-width: 250px;
+}

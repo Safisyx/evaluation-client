@@ -1,10 +1,11 @@
 import React, {PureComponent} from 'react'
 import {getBatch} from '../../actions/batches'
-import {addStudent, editStudent} from '../../actions/students'
+import {addStudent, editStudent,pickStudent} from '../../actions/students'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import StudentCard from '../students/StudentCard'
 import StudentForm from '../students/StudentForm'
+import StudentPick from '../students/StudentPick'
 import './BatchOverview.css'
 
 class BatchOverview extends PureComponent {
@@ -36,7 +37,7 @@ class BatchOverview extends PureComponent {
         remove: false,
         edit:false,
         pick: false,
-        picked:-1000
+        picked:-1000,
       }
     )
   }
@@ -76,13 +77,13 @@ class BatchOverview extends PureComponent {
   }
 
   handleSubmit = (data) => {
-    console.log(this.state.edit);
-    console.log(data);
-    console.log('SSSSSSSSSSSSSSSSSSSSSh');
+    // console.log(this.state.edit);
+    // console.log(data);
+    // console.log('SSSSSSSSSSSSSSSSSSSSSh');
     if (this.state.add)
       this.props.addStudent(data)
     if (this.state.edit){
-      console.log(this.state.picked);
+      //console.log(this.state.picked);
       this.props.editStudent(this.state.picked,data)
     }
     this.stateChange()
@@ -105,6 +106,16 @@ class BatchOverview extends PureComponent {
       }
     )
   }
+
+  handleAsk = () => {
+    this.props.pickStudent(this.props.batch.students)
+    // this.setState(
+    //   {
+    //     ...this.state,
+    //     askQuestion:true
+    //   }
+    // )
+  }
   render() {
     const {authenticated,batch} = this.props
     if (!batch.colorsPercentage) return "loading.."
@@ -114,8 +125,6 @@ class BatchOverview extends PureComponent {
     if (!authenticated) return (
 			<Redirect to="/login" />
 		)
-
-    if (students.length===0) return 'No student yet'
 
     if (this.state.add) {
       return (
@@ -129,14 +138,29 @@ class BatchOverview extends PureComponent {
       )
     }
 
+    if (this.props.studentPick) {
+      return (
+        <StudentPick student={this.props.studentPick}/>
+      )
+    }
+
+    if (students.length===0) return (
+      <div className='batch-menu'>
+        <button className='add-student' onClick={this.handleAdd}> Add student </button>
+      </div>
+    )
+
     return (
 
       <div className='BatchOverview'>
         <div className='batch-menu'>
-          <button id='add-student' onClick={this.handleAdd}> Add student </button>
+          <button className='add-student' onClick={this.handleAdd}> Add student </button>
           <button id='edit-student' onClick={this.handleEdit}> Edit student </button>
           <button id='delete-student' onClick={this.handleDelete}> Delete student </button>
         </div>
+        <button id='ask-question' onClick={this.handleAsk}>
+          Ask Question
+        </button>
         <p>{ this.props.error && <span style={{color:'red'}}>{this.props.error}</span> }</p>
         <div className='Progress'>
           <div id='green' style={this.divStyle(colorsPercentage.green)}>
@@ -161,7 +185,8 @@ class BatchOverview extends PureComponent {
 const mapStateToProps = state => ({
   authenticated: (state.login.user !== null) && (state.login.user !== undefined),
   batch: state.batch,
-  error: state.errors.error
+  error: state.errors.error,
+  studentPick: state.studentPicked
 })
 
-export default connect(mapStateToProps, {getBatch, addStudent, editStudent})(BatchOverview)
+export default connect(mapStateToProps, {getBatch, addStudent, editStudent, pickStudent})(BatchOverview)
