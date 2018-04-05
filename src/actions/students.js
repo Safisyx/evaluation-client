@@ -12,7 +12,10 @@ export const deleteStudent = (id) => (dispatch, getState) => {
     .then(result => {
       dispatch({
         type: DELETE_STUDENT,
-        payload: result.body.message
+        payload: {
+          message:result.body.message,
+          id
+        }
       })
     })
     .catch(err => console.error(err))
