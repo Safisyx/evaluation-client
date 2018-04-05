@@ -8,3 +8,8 @@ export const GET_BATCH = 'GET_BATCH'
 export const GET_BATCHES = 'GET_BATCHES'
 export const ADD_BATCH = 'ADD_BATCH'
 export const ADD_BATCH_ERROR = 'ADD_BATCH_ERROR'
+
+//STUDENTS
+export const ADD_STUDENT = 'ADD_STUDENT'
+export const EDIT_STUDENT = 'EDIT_STUDENT'
+export const DELETE_STUDENT = 'DELETE_STUDENT'
