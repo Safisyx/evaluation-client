@@ -43,6 +43,12 @@ class BatchOverview extends PureComponent {
 
     return (
       <div className='BatchOverview'>
+
+        <div className='batch-menu'>
+          <button id='add-student'> Add student </button>
+          <button id='edit-student'> Edit student </button>
+          <button id='delete-student'> Delete student </button>
+        </div>
         <div className='Progress'>
           <div id='green' style={this.divStyle(colorsPercentage.green)}>
             <p>{colorsPercentage.green !==0 && `${colorsPercentage.green}%`}</p>

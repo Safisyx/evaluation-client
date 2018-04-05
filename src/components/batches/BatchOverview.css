@@ -30,3 +30,11 @@
   transform: translate(-50%,0);
   left: 50%;
 }
+
+.batch-menu {
+  padding-top: 10px;
+}
+
+.batch-menu button {
+  margin: 0 25px 0 25px;
+}
