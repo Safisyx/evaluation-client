@@ -6,8 +6,11 @@ export default (state = {}, {type, payload}) => {
       return payload
 
     case DELETE_STUDENT:
-      return state.filter(student => student.id !== payload.id)
-      
+      return {
+        ...state,
+        students: state.students.filter(student => student.id !== payload.id)
+      }
+
     default:
       return state
   }
