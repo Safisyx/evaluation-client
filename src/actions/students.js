@@ -27,9 +27,14 @@ export const addStudent = ({name,photo}) => (dispatch, getState) => {
   const jwt = state.login.user
   const batchId = state.batch.id
 
+  let photoToSend
+  if (!photo)
+    photoToSend = 'https://avpn.asia/wp-content/uploads/2015/05/empty_profile.png'
+  else
+    photoToSend =photo
   request
     .post(`${baseUrl}/students/batches/${batchId}`)
-    .send({name,photo})
+    .send({name,photo:photoToSend})
     .set('Authorization', `Bearer ${jwt}`)
     .then(result => {
       dispatch({
