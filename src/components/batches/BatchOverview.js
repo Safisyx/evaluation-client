@@ -117,13 +117,13 @@ class BatchOverview extends PureComponent {
 
   render() {
     const {authenticated,batch} = this.props
-    if (!batch.colorsPercentage) return "loading.."
     const colorsPercentage = batch.colorsPercentage
     const students = batch.students
     console.log(colorsPercentage);
     if (!authenticated) return (
 			<Redirect to="/login" />
 		)
+    if (!batch.colorsPercentage) return "loading.."
 
     if (this.state.add) {
       return (
