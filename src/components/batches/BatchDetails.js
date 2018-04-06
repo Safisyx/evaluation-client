@@ -6,6 +6,10 @@ import Typography from 'material-ui/Typography'
 import './BatchDetails.css'
 
 class BatchDetails extends PureComponent {
+  dateFormat (date) {
+    const d = date.split('-')
+    return `${d[2]}/${d[1]}/${d[0]}`
+  }
   render() {
     const {batch} = this.props
     console.log(this.props.match);
@@ -16,6 +20,11 @@ class BatchDetails extends PureComponent {
           <Typography variant="headline" component="h2">
             Batch #{batch.id}
           </Typography>
+
+          <Typography className='dates'>
+            {`${this.dateFormat(batch.startDate)} - ${this.dateFormat(batch.endDate)}`}
+          </Typography>
+
           <Typography color="textSecondary">
             Students: {batch.students.length}
           </Typography>
