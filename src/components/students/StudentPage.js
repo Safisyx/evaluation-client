@@ -50,8 +50,12 @@ class StudentPage extends PureComponent {
 
   handleSubmit = (next,data) => {
     console.log(next,data);
-    if (data.code && (data.code==='green'|| data.code==='yellow'|| data.code==='red'))
-      this.props.addEvaluation(this.props.student.id,data)
+    if (data.code && (data.code==='green'|| data.code==='yellow'|| data.code==='red')){
+      if((data.code==='red' || (data.code==='yellow') & (!data.remark)))
+        alert('Change not saved because you need to fill in the remark for that color')
+      else
+        this.props.addEvaluation(this.props.student.id,data)
+    }
     if (!next)
       this.props.history.push(`/batches/${this.props.match.params.batchId}`)
     else {

@@ -16,8 +16,8 @@ class StudentCard extends PureComponent {
       this.props.change()
       //window.location.reload()
     } else if (this.props.pick) {
-      alert(this.props.student.id)
-      console.log('EDIT');
+      //alert(this.props.student.id)
+      //console.log('EDIT');
       this.props.afterPick(this.props.student.id)
     }
     else
