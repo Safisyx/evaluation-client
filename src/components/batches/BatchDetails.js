@@ -1,45 +1,17 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import Button from 'material-ui/Button'
-import Card, { CardActions, CardContent } from 'material-ui/Card'
+import Card, { CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import './BatchDetails.css'
 
 class BatchDetails extends PureComponent {
-
-  // handleClick = () => {
-  //   const {game,history,players} = this.props
-  //   switch(this.buttonText(players)) {
-  //     case "join":
-  //       this.props.joinGame(game.id)
-  //       history.push(`/games/${game.id}`)
-  //       break
-  //     case "enter":
-  //     case "watch":
-  //       history.push(`/games/${game.id}`)
-  //       break
-  //     default:
-  //       return null
-  //   }
-  // }
-  // buttonText = (players) => {
-  //   const id = this.props.userId
-  //   const game = this.props.game
-  //   if (players.includes(id)) {
-  //     if (game.status === "started") return "enter"
-  //     return "..."
-  //   } else {
-  //     if (game.status === 'started') return "watch"
-  //     return "join"
-  //   }
-  // }
   render() {
     const {batch} = this.props
     console.log(this.props.match);
 
     return (
-      <Card className="batch-card">
+      <Card className="batch-card" onClick={()=>(this.props.history.push(`/batches/${batch.id}`))}>
         <CardContent>
           <Typography variant="headline" component="h2">
             Batch #{batch.id}
@@ -48,17 +20,6 @@ class BatchDetails extends PureComponent {
             Students: {batch.students.length}
           </Typography>
         </CardContent>
-
-        <CardActions>
-        {
-          <Button
-            size="small"
-            onClick={()=>(this.props.history.push(`/batches/${batch.id}`))}
-          >
-              view
-          </Button>
-        }
-        </CardActions>
       </Card>
     )
   }
