@@ -12,7 +12,7 @@ class LoginPage extends PureComponent {
 
 	render() {
 		if (this.props.user) return (
-			<Redirect to='/main'/>
+			<Redirect to='/batches'/>
 		)
 
 		return (

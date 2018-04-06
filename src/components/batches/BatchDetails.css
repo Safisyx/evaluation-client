@@ -1,0 +1,18 @@
+.batch-card {
+  width: 300px;
+  height: 150px;
+  margin: 10px;
+  background-color: lightblue !important;
+  color: black !important;
+}
+
+.batch-card:hover {
+  /* background-color: blue !important; */
+  width: 310px;
+  height: 160px;
+  margin: 5px;
+}
+
+.dates {
+  margin: 10px !important;
+}
