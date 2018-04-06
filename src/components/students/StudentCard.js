@@ -11,7 +11,7 @@ class StudentCard extends PureComponent {
 
   handleClick = () => {
     if (this.props.remove) {
-      alert(this.props.student.id)
+      // alert(this.props.student.id)
       this.props.deleteStudent(this.props.student.id)
       this.props.change()
       //window.location.reload()
