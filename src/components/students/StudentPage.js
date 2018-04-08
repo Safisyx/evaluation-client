@@ -66,6 +66,7 @@ class StudentPage extends PureComponent {
       let nextStudent=studentIndex+1
       if (studentIndex===students.length-1)
         nextStudent = 0
+      this.setState({color:'inherit'})
       this.props.history.push(`/batches/${this.props.match.params.batchId}/students/${students[nextStudent].id}`)
     }
 
