@@ -11,7 +11,11 @@ export default class EvaluationForm extends PureComponent {
 
   saveNext = (e) => {
     e.preventDefault()
-		this.props.onSubmit(true,{...this.state, code: this.props.bColor})
+		const data = {...this.state, code: this.props.bColor}
+		this.setState({remark:'', date:''})
+		console.log(this.state);
+		this.props.onSubmit(true,data)
+
   }
 
 	handleChange = (event) => {
@@ -19,8 +23,7 @@ export default class EvaluationForm extends PureComponent {
 
     this.setState({
       [name]: value
-    })
-		console.log(this.state);
+    },()=>console.log(this.state))
   }
 
 	render() {
