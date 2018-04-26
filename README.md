@@ -1,5 +1,5 @@
 # Student Evaluation Tool
-This was the final individual evaluation at codaisseur. The goal is to create an app to allow teachers to daily evaluate students by assigning a color green (on track), yellow(rather good) or red(need attention).  
+This was the final individual evaluation at [codaisseur](https://wwww.codaiseur.com). The goal is to create an app to allow teachers to daily evaluate students by assigning a color green (on track), yellow(rather good) or red(need attention).  
 The back-end for this app can be found here https://github.com/Safisyx/student-evaluation-api  
 ______________  
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
